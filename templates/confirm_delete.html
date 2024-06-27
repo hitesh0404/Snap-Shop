@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+{{object}}
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, Confirm">
+</form>
+<button>
+    <a href="{% url 'home' %}">No, Back to Home</a>
+</button>
+<button>
+    
+    <a href="../../{{object.id}}">No, Go Back </a>
+
+</button>
+{% endblock %}

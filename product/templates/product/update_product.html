@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update Product</h2>
+<form method="Post" novalidate>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit">
+
+</form>
+{% endblock %}

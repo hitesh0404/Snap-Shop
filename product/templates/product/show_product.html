@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for p in products %}
+ 
+    <h3>{{p.name}}</h3>
+    <img src="{{p.image.url}}">
+ <a href="{% url 'product-detail' p.id %}">Show product Details</a>
+
+{% endfor %}
+{% endblock %}
