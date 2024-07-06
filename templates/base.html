@@ -45,6 +45,25 @@
                         <span class="visually-hidden">(current)</span></a
                     >
                 </li>
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">         Hello {{request.user}}
+                  <span class="visually-hidden">(current)</span></a></li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'logout-user' %}" aria-current="page">Logout
+                <span class="visually-hidden">(current)</span></a></li>
+        {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'register-user' %}" aria-current="page"
+                      >Register
+                      <span class="visually-hidden">(current)</span></a></li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'login-user' %}" aria-current="page">Login
+                    <span class="visually-hidden">(current)</span></a>
+            </li>
+            {% endif %}
+           
+           
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
@@ -89,7 +108,34 @@
     </nav>
 
 
+<style>
+  .closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+</style>
 
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{{message.tags}}" style="margin: 20px 120px; ">
+      
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+       {{ message }}
+     
+    </div>
+{% endfor %}   
+{% endif %}
 {% block content %}
 <h1> index page</h1>
 {% endblock %}
@@ -110,11 +156,7 @@
 
 
 
-
-
-
-
-    <div class="container-fluied my1 mt-auto py-3">
+    <div class="container-fluied my1 mt-auto py-auto">
         <!-- Footer -->
         <footer
                 class="text-center text-lg-start text-white"

@@ -2,10 +2,21 @@
 {% block content %}
 
 {% for p in products %}
- 
-    <h3>{{p.name}}</h3>
-    <img src="{{p.image.url}}">
- <a href="{% url 'product-detail' p.id %}">Show product Details</a>
-
+<!-- <div >
+    <div >
+    <img src="{{p.image.url}}" width="200px">
+    <a href="{% url 'product-detail' p.id %}" >Show product Details</a>
+   
+    <h3 >{{p.name}}</h3>
+</div>
+</div> -->
+<div style="display: grid; position: relative; height: 300px;" >
+    <div style="display:table-row; margin: 20px;border-radius: 34px;background-color: rgba(255,255,255,0.5); " >
+    <img src="{{p.image.url}}" width="200px" style="position: absolute; margin:20px; border-radius: 28px;">
+    <a href="{% url 'product-detail' p.id %}" style="position: absolute; right:50px; top:80px ">Show product Details</a>
+   
+    <h3 style="display: inline-block; position:absolute ; top :40px; left: 250px;">{{p.name}}</h3>
+</div>
+</div>
 {% endfor %}
 {% endblock %}

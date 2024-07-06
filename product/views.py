@@ -1,13 +1,19 @@
 from django.shortcuts import render,redirect,get_object_or_404
 # Create your views here.
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
 from .models import Product
+from account.views import mail_send_new
 
+# @login_required
 def showProduct(request):
+    products = Product.objects.all()
     context={
-        'products': Product.objects.all()
+        'products': products
     }
+    u=get_object_or_404(User,pk=10)
+    mail_send_new(request,products,u)
     return render(request,'product/show_product.html',context)
 
 
@@ -22,6 +28,7 @@ def add_product(request):
             context = {
                 'form': form
             }
+            
             return render(request,'product/add_product.html',context)
     elif request.method=="GET":
         context = {

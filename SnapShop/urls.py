@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact_us/',TemplateView.as_view(template_name='contact_us.html')),
     path('home',views.home),
     path('product/',include('product.urls')),
+    path('account/',include('account.urls')),
 ]
 from django.conf import settings
 from django.conf.urls.static import static

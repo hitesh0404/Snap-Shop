@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<h2>Register User</h2>
+<form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+   {% for f in form %}
+
+   {{ f.label_tag }} 
+   {{ f }}
+
+   {% endfor %}
+    <input type="submit">
+
+</form>
+<script>
+    const p = document.getElementsById("id_password")
+    p.setAttribute('type','password')
+    p.type='password'
+</script>
+{% endblock %}

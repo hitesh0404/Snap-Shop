@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+   <form action="{%  url  'mail_send' %}" method="post">    
+    {% csrf_token %}                                        
+<div class="mb-3">
+    <label for="" class="form-label">To </label>            
+    <input         type="email"        class="form-control"
+        name="to"                                           
+        id=""
+        aria-describedby="emailHelpId"
+        placeholder="abc@mail.com"
+    />
+
+    <label for="" class="form-label">Subject</label>
+    <input type="text" class="form-control"
+        name="subject" aria-describedby="helpId" placeholder="Write Subject"/>
+    
+    <label for="" class="form-label">message</label>
+    <textarea class="form-control" name="message" id="" rows="3"></textarea>
+  <button    type="submit" class="btn btn-primary">
+    Send
+  </button></div>  
+ </form> 
+  {% endblock %}
