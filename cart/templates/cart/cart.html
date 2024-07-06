@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>cart page</h2>
+{% if cart %}
+{% for item in cart %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ item.product.image.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ item.product.name }}</h5>
+        <p class="card-text">price: {{ item.product.price }}</p>
+        <p class="card-text">quantity: {{ item.quantity }}</p>
+        <p class="card-text">total: {{ item.total }}</p>
+        
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+{% else %}
+
+<p>your cart is empty</p>
+
+{% endif %}
+
+
+
+
+{% endblock %}

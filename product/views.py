@@ -67,3 +67,7 @@ def update_product(request,id):
             return product_details(request,id)
         else:
             return render(request,'product/update_product.html',{'form':form})
+
+
+def add_to_cart(request,id):
+    return redirect('home')
