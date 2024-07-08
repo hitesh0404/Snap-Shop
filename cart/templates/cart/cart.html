@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% block content %}
 <h2>cart page</h2>
 {% if cart %}
@@ -9,7 +10,7 @@
         <h5 class="card-title">{{ item.product.name }}</h5>
         <p class="card-text">price: {{ item.product.price }}</p>
         <p class="card-text">quantity: {{ item.quantity }}</p>
-        <p class="card-text">total: {{ item.total }}</p>
+        <p class="card-text">total: {{ item.quantity |total:item.product.price }}</p>
         
         </div>
     </div>

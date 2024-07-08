@@ -2,6 +2,9 @@ from django.shortcuts import render,get_object_or_404
 from .models import Cart,Customer,Product
 from django.contrib.auth.models import User
 
+
+
+
 # Create your views here.
 def add_to_cart(request,id):
     user_id = User.objects.get(username=request.user)
@@ -19,3 +22,13 @@ def add_to_cart(request,id):
         'cart':cart
         }
     return render(request,'cart/cart.html',context)
+
+
+def cart(request):
+    customer_object = Customer.objects.get(user_id=request.user.id)
+    cart = Cart.objects.filter(user=customer_object)
+    context={
+        'cart':cart
+        }
+    return render(request,'cart/cart.html',context)
+
