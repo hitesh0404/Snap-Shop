@@ -9,7 +9,12 @@
     <div class="card-body">
         <h5 class="card-title">{{ item.product.name }}</h5>
         <p class="card-text">price: {{ item.product.price }}</p>
-        <p class="card-text">quantity: {{ item.quantity }}</p>
+        
+        <p class="card-text">quantity:
+            <a href="{% url 'increase-quantity' item.product.id %}" class="btn btn-success">&#9547;</a> 
+            {{ item.quantity }} 
+            <a  href="{% url 'decrease-quantity' item.product.id %}" class="btn btn-danger">&#9473;</a></p>
+Hello world
         <p class="card-text">total: {{ item.quantity |total:item.product.price }}</p>
         
         </div>

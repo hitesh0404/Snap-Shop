@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 
 def mail_send_new(request,products,user):
+
     subject ="List of new Products"
     to = user.email
     message = 'Hey this are the new products avaible now on our website'
@@ -87,3 +88,6 @@ class Login(View):
 def logout_user(request):
     logout(request)
     return  redirect('home')
+
+def mail_send_new(request,products,user):
+    pass
