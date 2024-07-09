@@ -12,6 +12,13 @@ def get_objects(request,id):
 
 
 
+def get_objects(request,id):
+    user_obj = User.objects.get(username=request.user)
+    cust_obj = Customer.objects.get(user=user_obj.id)
+    prod_obj = Product.objects.get(id=id)
+    return cust_obj,prod_obj
+
+
 
 
 
