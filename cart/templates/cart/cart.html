@@ -13,14 +13,18 @@
         <p class="card-text">quantity:
             <a href="{% url 'increase-quantity' item.product.id %}" class="btn btn-success">&#9547;</a> 
             {{ item.quantity }} 
-            <a  href="{% url 'decrease-quantity' item.product.id %}" class="btn btn-danger">&#9473;</a></p>
-Hello world
+            <a  href="{% url 'decrease-quantity' item.product.id %}" class="btn btn-warning">&#9473;</a></p>
+            <p><a href="{% url 'remove-product-from-cart' item.product.id %}" class="btn btn-danger">Remove Item</a></p>
+
+
         <p class="card-text">total: {{ item.quantity |total:item.product.price }}</p>
         
         </div>
     </div>
 </div>
 {% endfor %}
+<p><a href="{% url 'clear-cart' %}" class="btn btn-danger">Clear Cart</a></p>
+
 
 
 {% else %}

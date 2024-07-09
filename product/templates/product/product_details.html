@@ -4,7 +4,7 @@
 <h3> Details PAge of Product   <span>{{p.name}}</span></h3>
  
     <h3>{{p.name}}</h3>
-    <p>{{p.price}}</p>
+    <h4>{{p.price}}</h4>
     <p>{{p.desc}}</p>
     <button><a href="{% url 'delete-product' p.id %}">Delete Product</a></button>
     <button><a href="{% url 'update-product' p.id %}">Update Product</a></button>
