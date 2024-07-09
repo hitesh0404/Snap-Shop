@@ -12,7 +12,9 @@ def get_objects(request,id):
 
 
 
-# Create your views here.
+
+
+
 def add_to_cart(request,id):
     cust_obj,prod_obj = get_objects(request,id)
 
