@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_name %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+  {{'HP'|myfilter |safe}}
+  {% mytag 343 43 434 %}
+  
+  
+
     <nav
+
         class="navbar navbar-expand-sm navbar-light bg-light"
     >
         <div class="container">
@@ -46,8 +53,8 @@
                     >
                 </li>
 
-                {% if request.user.is_authenticated %}
-                <li class="nav-item">         Hello {{request.user}}
+                {% if request.user.is_authenticated %} 
+                <li class="nav-item">   {{request.user|default:'hiiiiiiii'}}   &lt;h1&gt;   Hello {{request.user}} {% now "jS F Y H:i" %}
                   <span class="visually-hidden">(current)</span></a></li>
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'logout-user' %}" aria-current="page">Logout
@@ -137,7 +144,16 @@
 {% endfor %}   
 {% endif %}
 {% block content %}
+
+
+{% filter lower %}
 <h1> index page</h1>
+<h1> index page</h1>
+<h1> index page</h1>
+    This text will be HTML-escaped, and will appear in all lowercase.
+{% endfilter %}
+
+
 {% endblock %}
 
 
