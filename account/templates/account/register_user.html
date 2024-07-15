@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %} 
-<h2>Register User</h2>
+<h2>Register as {{user_type}}</h2>
 <form method="POST" enctype="multipart/form-data" >
     {% csrf_token %}
+    {% for f in user_form %}
+
+    {{ f.label_tag }} 
+    {{ f }}<br>
+ 
+    {% endfor %}
    {% for f in form %}
 
    {{ f.label_tag }} 
-   {{ f }}
+   {{ f }}<br>
 
    {% endfor %}
     <input type="submit">

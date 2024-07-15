@@ -26,7 +26,7 @@ def mail_send(request):
     return HttpResponse("Done,<a href='/account/mail' > send more</a>")
     
 
-from . forms import RegisterForm
+from . forms import *
 # def register_user(request):
 #     context = {
 #         'form':RegisterForm()
@@ -35,31 +35,53 @@ from . forms import RegisterForm
 from django.views import View
 
 class Register(View):
-    def get(self,request):
-        context = {'form':RegisterForm()}
+    
+    def get(self,request,user_type):
+        if user_type not in ['supplier', 'customer']:
+            return redirect('home')  # Redirect to a default page if user_type is invalid
+
+        form_class = SupplierRegisterForm if user_type == 'supplier' else CustomerRegisterForm
+        form_class
+        context = {
+                'user_form':RegisterForm(),
+                'form':form_class(),
+                'user_type':user_type
+                       }
         return render(request,'account/register_user.html',context)
     
-    def post(self,request):
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            username=request.POST.get('username')
-            password = request.POST.get('password')
-            firstname = request.POST.get('first_name')
-            lastname = request.POST.get('last_name')
-            from django.contrib.auth.models import User
-            u = User.objects.create_user(username=username,password=password)
-            u.first_name = firstname
-            u.last_name = lastname
+        
+    def post(self,request,user_type):
+        if user_type not in ['supplier', 'customer']:
+            return redirect('home')  # Redirect to a default page if user_type is invalid
+        user_form = RegisterForm(request.POST)
+        form_class = SupplierRegisterForm if user_type == 'supplier' else CustomerRegisterForm
+        form = form_class(request.POST)
+        if form.is_valid() and user_form.is_valid():
+            user = user_form.save()
+            u = form.save(commit=False)
+            u.user = get_object_or_404(User,pk=user.id)
             u.save()
-        return HttpResponse('done')
-    
+        return redirect('home')
+        
+                # username=request.POST.get('username')
+                # password = request.POST.get('password')
+                # firstname = request.POST.get('first_name')
+                # lastname = request.POST.get('last_name')
+                # from django.contrib.auth.models import User
+                # u = User.objects.create_user(username=username,password=password)
+                # u.first_name = firstname
+                # u.last_name = lastname
+                # u.save()
+               
+       
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import get_object_or_404
+
 class Login(View):
     def get(self,request):
         return render(request,'account/login.html')
-    def post(self,request):
+    def post(self,request,user_type):
         username = request.POST.get('username')
         password = request.POST.get('password')
         print(username,password)
@@ -72,6 +94,8 @@ class Login(View):
             u = authenticate(request,username=username,password=password)
             if u:
                 login(request,u)
+                if 'user_type' not in request.session:
+                    request.session['user_type']=user_type
                 messages.success(request,'welcome back to the Home page')
                 return redirect('home')
             else:
