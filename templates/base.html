@@ -54,18 +54,18 @@
                 </li>
 
                 {% if request.user.is_authenticated %} 
-                <li class="nav-item">   {{request.user|default:'hiiiiiiii'}}   &lt;h1&gt;   Hello {{request.user}} {% now "jS F Y H:i" %}
+                <li class="nav-item">     Hello {{request.user}} {{request.session.user_type}}
                   <span class="visually-hidden">(current)</span></a></li>
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'logout-user' %}" aria-current="page">Logout
                 <span class="visually-hidden">(current)</span></a></li>
         {% else %}
                 <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'choice' %}" aria-current="page"
+                  <a class="nav-link active" href="{% url 'register' 'register' %}" aria-current="page"
                       >Register
                       <span class="visually-hidden">(current)</span></a></li>
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'login-user' %}" aria-current="page">Login
+                <a class="nav-link active" href="{% url 'login' 'login' %}" aria-current="page">Login
                     <span class="visually-hidden">(current)</span></a>
             </li>
             {% endif %}

@@ -2,23 +2,33 @@
 
 {% block content %}
 
-<div class="choice-button">
-    <div id="Customer">
+<div id="out">
+    <div id="in">
+    <div style="top:10px; left:10px">
 <a    name=""
     id=""
     class="btn btn-primary"
-    href="{% url 'register-customer' 'customer' %}"
+    href=    "{% if request_for == 'register' %}
+    {% url 'register_user' 'customer' %}
+    {% else %}
+    {% url 'login_user' 'customer' %}
+    {% endif %}"
     role="button"
     >Customer</a>
 </div>
-<div id="supplier"><br>
+<div  class='mycls' id="supplier"><br>
     <a    name=""
     id=""
     class="btn btn-primary"
-    href="{% url 'register-supplier' 'supplier'  %}"
+    href="{% if request_for == 'register' %}
+    {% url 'register_user' 'supplier' %}
+    {% else %}
+    {% url 'login_user' 'supplier' %}
+    {% endif %}"
     
     role="button"
     >Supplier</a>
+</div>
 </div>
 </div>
 {% endblock%}

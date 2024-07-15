@@ -79,12 +79,14 @@ from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import get_object_or_404
 
 class Login(View):
-    def get(self,request):
-        return render(request,'account/login.html')
+    def get(self,request,user_type):
+        if user_type not in ['supplier', 'customer']:
+            return redirect('home')  # Redirect to a default page if user_type is invalid
+        return render(request,'account/login.html', {'user_type':user_type})
     def post(self,request,user_type):
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username,password)
+        # print(username,password)
         # user = User.objects.get(username=username) 
         # user =get_user_model().objects.get(username=username)
         user=User.objects.get(username=username) 
@@ -92,10 +94,14 @@ class Login(View):
         if user:
             # print(request.__dict__)
             u = authenticate(request,username=username,password=password)
-            if u:
+            if u and 'user_type' not in request.session:
+                if user_type == 'customer':
+                    if hasattr(u,'customer'):
+                        request.session['user_type']='customer'
+                elif user_type=='supplier':
+                    if hasattr(u,'supplier'):
+                        request.session['user_type']='supplier'
                 login(request,u)
-                if 'user_type' not in request.session:
-                    request.session['user_type']=user_type
                 messages.success(request,'welcome back to the Home page')
                 return redirect('home')
             else:
@@ -115,3 +121,10 @@ def logout_user(request):
 
 def mail_send_new(request,products,user):
     pass
+
+
+def choice_for_user(request,request_for):
+    context={
+        'request_for':request_for
+    }
+    return render(request,'account/choice.html',context)
