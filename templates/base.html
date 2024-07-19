@@ -10,15 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-  {{'HP'|myfilter |safe}}
-  {% mytag 343 43 434 %}
+  
   
   
 
-    <nav
-
-        class="navbar navbar-expand-sm navbar-light bg-light"
-    >
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
             <button
@@ -40,12 +36,14 @@
                             <span class="visually-hidden">(current)</span></a
                         >
                     </li>
+                    {% if request.session.user_type != 'customer' %}
                     <li class="nav-item">
                       <a class="nav-link active" href="{% url 'add-product' %}" aria-current="page"
                           >Add Product
                           <span class="visually-hidden">(current)</span></a
                       >
                   </li>
+                  {% endif %}
                   <li class="nav-item">
                     <a class="nav-link active" href="{% url 'show-product' %}" aria-current="page"
                         >show Product

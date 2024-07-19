@@ -4,6 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 choice=(('M','Male'),('F','Female'),("O",'Other'))
+
+
+
+class Address(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
+
 class Customer(models.Model):
     user  = models.OneToOneField(to=User,on_delete=models.CASCADE)
     phone_number = models.BigIntegerField()
