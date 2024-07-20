@@ -3,17 +3,20 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
-from .models import Product
+from .models import Product,Category
 from account.views import mail_send_new
 
 # @login_required
 def showProduct(request):
     products = Product.objects.all()
+    categories = Category.objects.all()
+    
     context={
-        'products': products
+        'products': products,
+        'categories':categories
     }
-    u=get_object_or_404(User,pk=10)
-    mail_send_new(request,products,u)
+    # u=get_object_or_404(User,pk=10)
+    # mail_send_new(request,products,u)
     return render(request,'product/show_product.html',context)
 
 
@@ -71,3 +74,16 @@ def update_product(request,id):
 
 def add_to_cart(request,id):
     return redirect('home')
+
+
+def filter_by_category(request,name):
+    # products = Product.objects.filter(category=name)
+    c= get_object_or_404(Category,name=name)
+    products = c.product_set.all()
+    categories = Category.objects.all()
+
+    context = {
+        'products':products,
+        'categories':categories
+        }
+    return render(request,'product/show_product.html',context)

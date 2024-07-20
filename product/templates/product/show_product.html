@@ -1,22 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for p in products %}
-<!-- <div >
-    <div >
-    <img src="{{p.image.url}}" width="200px">
-    <a href="{% url 'product-detail' p.id %}" >Show product Details</a>
-   
-    <h3 >{{p.name}}</h3>
-</div>
-</div> -->
-<div style="display: grid; position: relative; height: 300px;" >
-    <div style="display:table-row; margin: 20px;border-radius: 34px;background-color: rgba(255,255,255,0.5); " >
-    <img src="{{p.image.url}}" width="200px" style="position: absolute; margin:20px; border-radius: 28px;">
-    <a href="{% url 'product-detail' p.id %}" style="position: absolute; right:50px; top:80px ">Show product Details</a>
-   
-    <h3 style="display: inline-block; position:absolute ; top :40px; left: 250px;">{{p.name}}</h3>
-</div>
-</div>
-{% endfor %}
+<div class="container-fluied">
+    <div class="row">
+        <div class="col-md-3 bg-light p-3 mt-3">
+            <h5>Filter By Category</h5>
+            <hr>
+            <p><a class="anchor" href="{% url 'show-product' %}">All</a></p>
+            {% for category in categories %}
+            <p><a href="{% url 'category' category.name %}">{{category.name}}</a>
+                </p>
+                {% endfor %}
+            <h5>Filter By Price</h5>
+            <hr>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label" for>MIN</label>
+                    <input class="form-control" type="text" name="min">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for>MAX</label>
+                    <input class="form-control" type="text" name="max">
+                </div>
+                <div class="mb-3">
+                    
+                    <input class="btn btn-danger" type="submit" value="search">
+                </div>
+            </form>
+            <h5>Sort By Price</h5>
+            <hr>
+            <p><a  class="anchor" href="/">High To Low</a></p>
+            <p><a class="anchor"  href="/">Low To High</a></p>
+        </div>
+       
+        <div class="col-md-9 mt-3 bg-light">
+          <div class="row">
+            {% for p in products %}
+            <div class="col-md-3 p-4 ">
+              <div class="card" style="width: 100%;">
+                <img src="{{p.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{p.name}}</h5>
+                  <p class="card-title">{{p.desc}}</p>
+                  <p class="card-title">{{p.price}}</p>
+                  <a href="{% url 'product-detail' p.id %}" class="btn btn-danger">Show Product Detail</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+    </div>
+    </div>
 {% endblock %}
