@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
 from .models import Product,Category
 from account.views import mail_send_new
+from django.contrib import messages
 
 # @login_required
 def showProduct(request):
@@ -82,6 +83,20 @@ def filter_by_category(request,name):
     products = c.product_set.all()
     categories = Category.objects.all()
 
+    context = {
+        'products':products,
+        'categories':categories
+        }
+    return render(request,'product/show_product.html',context)
+
+
+def search_product(request):
+    name = request.GET.get('search')
+    products = Product.objects.filter(name__icontains=name)
+    if not products.exists():
+        messages.error(request,'No product found')
+        products =Product.objects.filter(desc__icontains=name)
+    categories = Category.objects.all()
     context = {
         'products':products,
         'categories':categories
