@@ -101,4 +101,5 @@ def search_product(request):
         'products':products,
         'categories':categories
         }
+    
     return render(request,'product/show_product.html',context)
