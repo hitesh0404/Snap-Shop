@@ -30,3 +30,15 @@ class Supplier(models.Model):
     document_photo =models.ImageField(upload_to='supplier/document/',default=r'C:\Users\admin\Django Project\Main Project Folder\media\images\product_image\random_cat.jpg')
     company_name = models.CharField(max_length=30)
 
+
+
+from ckeditor.fields import RichTextField
+from django.utils.html import strip_tags
+
+
+class Carousel(models.Model):
+    image=models.ImageField(upload_to='carousel/',default=r'media\banner-01.jpg')
+    title=RichTextField()
+    description=RichTextField()
+    def __str__(self) :
+        return strip_tags(self.title)

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'account.apps.AccountConfig',
     'cart.apps.CartConfig',
+    'ckeditor',
     
 ]
 

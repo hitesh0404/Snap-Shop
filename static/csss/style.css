@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(244, 232, 8);
+}
+.choice-button{
+    position: relative;
+}
+inside-cls{
+    position: absolute;
+}
+
+
