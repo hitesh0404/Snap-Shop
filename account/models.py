@@ -3,13 +3,11 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 from django.utils import timezone
+from product.models import Product
 choice=(('M','Male'),('F','Female'),("O",'Other'))
 
 
-
-class Address(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    
+   
 
 class Customer(models.Model):
     user  = models.OneToOneField(to=User,on_delete=models.CASCADE)
@@ -42,3 +40,21 @@ class Carousel(models.Model):
     description=RichTextField()
     def __str__(self) :
         return strip_tags(self.title)
+
+
+
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=20)
+    block_number = models.IntegerField()
+    building_name  = models.CharField(max_length=20)
+    area_street  = models.CharField(max_length=20)
+    near_by   = models.CharField(max_length=20)      
+    city    = models.CharField(max_length=20)        
+    state  = models.CharField(max_length=20)         
+    pincode= models.IntegerField(max_length=6)
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
