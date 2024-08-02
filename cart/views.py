@@ -1,6 +1,14 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Cart,Customer,Product
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
+
+def get_objects(request,id):
+    user_obj = User.objects.get(username=request.user)
+    cust_obj = Customer.objects.get(user=user_obj.id)
+    prod_obj = Product.objects.get(id=id)
+    return cust_obj,prod_obj
 
 
 
@@ -12,16 +20,8 @@ def get_objects(request,id):
 
 
 
-def get_objects(request,id):
-    user_obj = User.objects.get(username=request.user)
-    cust_obj = Customer.objects.get(user=user_obj.id)
-    prod_obj = Product.objects.get(id=id)
-    return cust_obj,prod_obj
 
-
-
-
-
+# @login_required
 def add_to_cart(request,id):
     cust_obj,prod_obj = get_objects(request,id)
 

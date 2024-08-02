@@ -45,14 +45,14 @@ class Carousel(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=20)
-    block_number = models.IntegerField()
-    building_name  = models.CharField(max_length=20)
-    area_street  = models.CharField(max_length=20)
-    near_by   = models.CharField(max_length=20)      
-    city    = models.CharField(max_length=20)        
-    state  = models.CharField(max_length=20)         
-    pincode= models.IntegerField(max_length=6)
+    title = models.CharField(max_length=20,default='default_title')
+    block_number = models.IntegerField(default=0)
+    building_name  = models.CharField(max_length=20,default='default_building_name')
+    area_street  = models.CharField(max_length=20,default='default_area_street')
+    near_by   = models.CharField(max_length=20,default='default_near_by')      
+    city    = models.CharField(max_length=20,default='default_city')        
+    state  = models.CharField(max_length=20,default='default_city')         
+    pincode= models.IntegerField(max_length=6,default=0)
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

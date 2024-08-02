@@ -1,22 +1,43 @@
 from django.db import models
 from account.models import Address
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 class OrderStatus(models.Model):
     info = models.CharField(max_length=50)
     status = models.CharField(max_length=50, blank=False, null=False)
-    
+SHIPPING_METHOD_CHOICES = (
+    ('standard', 'Standard Shipping'),
+    ('express', 'Express Shipping'),
+    ('overnight', 'Overnight Shipping'),
+    ('pickup', 'In-Store Pickup'),
+    ('courier', 'Courier Service'),
+    ('international', 'International Shipping'),
+) 
+SHIPPING_CHARGES_CHOICES = {
+    'standard':100,
+    'express':200,
+    'overnight':500,
+    'pickup':0,
+    'courier':700,
+    'international':10000,
+}
+class Shipping(models.Model):
+    method = models.CharField(choices=SHIPPING_METHOD_CHOICES,max_length=20)
+    charges = models.IntegerField(default=0)
+    def save(self,*args,**kwargs):
+        self.charges = SHIPPING_CHARGES_CHOICES.get(self.method)
+        super(Shipping,self).save(*args,**kwargs)
+    def __str__(self) -> str:
+        return self.method +' ' + str(self.charges)
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     address = models.ForeignKey(Address,on_delete=models.DO_NOTHING)
     order_date = models.DateField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     order_status = models.ForeignKey(OrderStatus,on_delete=models.DO_NOTHING)
-    
-    # payment_id = models.
-    # order_status_id = models.
-    # shipping_id = models.   
+    shipping_id = models.ForeignKey(Shipping,on_delete=models.DO_NOTHING)
     def __str__(self):
         return (f'Customer: {self.user} and Order Value: {self.total} ')    
 

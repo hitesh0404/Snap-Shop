@@ -4,6 +4,9 @@ from django.conf import settings
 import os
 
 from account.models import Carousel
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def home(request):
     # response = FileResponse(open(os.path.join(settings.BASE_DIR,'templates/base.html'), 'rb'))
     # return response
