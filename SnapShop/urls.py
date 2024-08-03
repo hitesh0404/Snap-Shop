@@ -22,9 +22,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',TemplateView.as_view(template_name='index.html'),name='home'),
     path('',views.home,name='home'),
+    path('',views.home,name='index'),
+
 
     path("about_us/", TemplateView.as_view(template_name="about.html"),name='about'),
     path('contact_us/',TemplateView.as_view(template_name='contact-us.html'),name ='contact'),
+    path('gallery/',TemplateView.as_view(template_name='gallery.html'),name='gallery'),
+    path('shop/',TemplateView.as_view(template_name='shop.html'),name='shop'),
+    path('cart/',TemplateView.as_view(template_name='cart.html'),name='cart'),
+    path('shop-detail/',TemplateView.as_view(template_name='shop-detail.html'),name='shop-detail'),
+    path('chekout/',TemplateView.as_view(template_name='checkout.html'),name='checkout'),
+    path('my-account/',TemplateView.as_view(template_name='my-account.html'),name='my-account'),
+    path('wishlist/',TemplateView.as_view(template_name='wishlist.html'),name='wishlist'),
+
     path('home',views.home),
     path('product/',include('product.urls')),
     path('account/',include('account.urls')),

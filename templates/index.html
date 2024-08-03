@@ -4,24 +4,46 @@
     <!-- Start Slider -->
     <div id="slides-shop" class="cover-slides">
         <ul class="slides-container">
-            {% for c in cars %}
             <li class="text-center">
-                <img src="{{ c.image.url }}" alt="">
+                <img src="{% static 'images/banner-01.jpg' %}" alt="">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20">{{ c.title|safe }}</h1>
-                            <p class="m-b-40">{{ c.description|safe }}</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p><a class="btn hvr-hover" href="{% static '#' %}">Shop New</a></p>
                         </div>
                     </div>
                 </div>
             </li>
-            {% endfor %}
+            <li class="text-center">
+                <img src="{% static 'images/banner-02.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p><a class="btn hvr-hover" href="{% static '#' %}">Shop New</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'images/banner-03.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p><a class="btn hvr-hover" href="{% static '#' %}">Shop New</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
         </ul>
         <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            <a href="{% static '#' %}" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="{% static '#' %}" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
         </div>
     </div>
     <!-- End Slider -->
@@ -33,19 +55,19 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'images/categories_img_01.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+                        <a class="btn hvr-hover" href="{% static '#' %}">Lorem ipsum dolor</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'images/categories_img_02.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+                        <a class="btn hvr-hover" href="{% static '#' %}">Lorem ipsum dolor</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'images/categories_img_03.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+                        <a class="btn hvr-hover" href="{% static '#' %}">Lorem ipsum dolor</a>
                     </div>
                 </div>
             </div>
@@ -103,11 +125,11 @@
                             <img src="{% static 'images/img-pro-01.jpg' %}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="{% static '#' %}">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -126,11 +148,11 @@
                             <img src="{% static 'images/img-pro-02.jpg' %}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="{% static '#' %}">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -149,11 +171,11 @@
                             <img src="{% static 'images/img-pro-03.jpg' %}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="{% static '#' %}">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -172,11 +194,11 @@
                             <img src="{% static 'images/img-pro-04.jpg' %}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="{% static '#' %}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="{% static '#' %}">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -213,9 +235,9 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-heart"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-comments"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -231,9 +253,9 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-heart"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-comments"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -249,9 +271,9 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-heart"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="{% static '#' %}"><i class="far fa-comments"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -269,7 +291,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-01.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -277,7 +299,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-02.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -285,7 +307,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-03.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -293,7 +315,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-04.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -301,7 +323,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -309,7 +331,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-06.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -317,7 +339,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-07.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -325,7 +347,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-08.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -333,7 +355,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-09.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -341,7 +363,7 @@
                 <div class="ins-inner-box">
                     <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>

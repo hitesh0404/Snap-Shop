@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 {% block content %}
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -10,7 +20,7 @@
                 <div class="col-lg-12">
                     <h2>ABOUT US</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% static '#' %}">Home</a></li>
                         <li class="breadcrumb-item active">ABOUT US</li>
                     </ul>
                 </div>
@@ -24,7 +34,7 @@
         <div class="container">
             <div class="row">
 				<div class="col-lg-6">
-                    <div class="banner-frame"> <img class="img-fluid" src="images/about-img.jpg" alt="" />
+                    <div class="banner-frame"> <img class="img-fluid" src="{% static 'images/about-img.jpg' %}" alt="" />
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -34,7 +44,7 @@
                         sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
                         Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-					<a class="btn hvr-hover" href="#">Read More</a>
+					<a class="btn hvr-hover" href="{% static '#' %}">Read More</a>
                 </div>
             </div>
             <div class="row my-5">
@@ -63,21 +73,21 @@
                 </div>
                 <div class="col-sm-6 col-lg-3">
                     <div class="hover-team">
-                        <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                        <div class="our-team"> <img src="{% static 'images/img-1.jpg' %}" alt="" />
                             <div class="team-content">
                                 <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
                             <ul class="social">
                                 <li>
-                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="{% static '#' %}" class="fab fa-facebook"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="{% static '#' %}" class="fab fa-twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-google-plus"></a>
+                                    <a href="{% static '#' %}" class="fab fa-google-plus"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-youtube"></a>
+                                    <a href="{% static '#' %}" class="fab fa-youtube"></a>
                                 </li>
                             </ul>
                             <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
@@ -89,21 +99,21 @@
                 </div>
                 <div class="col-sm-6 col-lg-3">
                     <div class="hover-team">
-                        <div class="our-team"> <img src="images/img-2.jpg" alt="" />
+                        <div class="our-team"> <img src="{% static 'images/img-2.jpg' %}" alt="" />
                             <div class="team-content">
                                 <h3 class="title">Kristiana</h3> <span class="post">Web Developer</span> </div>
                             <ul class="social">
                                 <li>
-                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="{% static '#' %}" class="fab fa-facebook"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="{% static '#' %}" class="fab fa-twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-google-plus"></a>
+                                    <a href="{% static '#' %}" class="fab fa-google-plus"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-youtube"></a>
+                                    <a href="{% static '#' %}" class="fab fa-youtube"></a>
                                 </li>
                             </ul>
                             <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
@@ -115,21 +125,21 @@
                 </div>
                 <div class="col-sm-6 col-lg-3">
                     <div class="hover-team">
-                        <div class="our-team"> <img src="images/img-3.jpg" alt="" />
+                        <div class="our-team"> <img src="{% static 'images/img-3.jpg' %}" alt="" />
                             <div class="team-content">
                                 <h3 class="title">Steve Thomas</h3> <span class="post">Web Developer</span> </div>
                             <ul class="social">
                                 <li>
-                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="{% static '#' %}" class="fab fa-facebook"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="{% static '#' %}" class="fab fa-twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-google-plus"></a>
+                                    <a href="{% static '#' %}" class="fab fa-google-plus"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-youtube"></a>
+                                    <a href="{% static '#' %}" class="fab fa-youtube"></a>
                                 </li>
                             </ul>
                             <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
@@ -141,21 +151,21 @@
                 </div>
                 <div class="col-sm-6 col-lg-3">
                     <div class="hover-team">
-                        <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                        <div class="our-team"> <img src="{% static 'images/img-1.jpg' %}" alt="" />
                             <div class="team-content">
                                 <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
                             <ul class="social">
                                 <li>
-                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="{% static '#' %}" class="fab fa-facebook"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="{% static '#' %}" class="fab fa-twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-google-plus"></a>
+                                    <a href="{% static '#' %}" class="fab fa-google-plus"></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="fab fa-youtube"></a>
+                                    <a href="{% static '#' %}" class="fab fa-youtube"></a>
                                 </li>
                             </ul>
                             <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
@@ -175,87 +185,86 @@
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-01.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-02.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-03.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-04.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-06.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-07.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-08.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-09.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="{% static '#' %}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Instagram Feed  -->
-
 
 {% endblock %}
