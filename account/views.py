@@ -81,7 +81,8 @@ from django.shortcuts import get_object_or_404
 class Login(View):
     def get(self,request,user_type):
         if user_type not in ['supplier', 'customer']:
-            return redirect('home')  # Redirect to a default page if user_type is invalid
+            messages.error('Not a valid User Type')
+            return redirect('login' 'login')  # Redirect to a default page if user_type is invalid
         return render(request,'account/login.html', {'user_type':user_type})
     def post(self,request,user_type):
         username = request.POST.get('username')

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load my_name %}
+{% block content %}
+<h2>Checkout page</h2>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="payment">
+</form>
+
+{% endblock %}

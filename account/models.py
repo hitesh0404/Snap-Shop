@@ -53,6 +53,8 @@ class Address(models.Model):
     city    = models.CharField(max_length=20,default='default_city')        
     state  = models.CharField(max_length=20,default='default_city')         
     pincode= models.IntegerField(max_length=6,default=0)
+    def __str__(self):
+        return self.title
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

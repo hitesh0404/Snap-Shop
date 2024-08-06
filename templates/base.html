@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>SnapShop - Ecommerce Bootstrap 4 HTML Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -104,6 +104,16 @@
     </div>
     <!-- End Main Top -->
 
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{{message.tags}}" style="margin: 20px 120px; ">
+      
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+       {{ message }}
+     
+    </div>
+{% endfor %}   
+{% endif %}
     <!-- Start Main Top -->
     <header class="main-header">
         <!-- Start Navigation -->
@@ -114,7 +124,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="{% static 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="{% static 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo" style="max-height: 80px; opacity: 1; "   alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -132,6 +142,38 @@
                                 <li><a href="{% url 'checkout' %}">Checkout</a></li>
                                 <li><a href="{% url 'my-account' %}">My Account</a></li>
                                 <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                                {% if request.session.user_type != 'customer' %}
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="{% url 'add-product' %}" aria-current="page"
+                                      >Add Product
+                                      <span class="visually-hidden">(current)</span></a
+                                  >
+                              </li>
+                              {% endif %}
+                              <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'show-product' %}" aria-current="page"
+                                    >show Product
+                                    <span class="visually-hidden">(current)</span></a
+                                >
+                            </li>
+            
+                            {% if request.user.is_authenticated %} 
+                            <li class="nav-item">     Hello {{request.user}} {{request.session.user_type}}
+                              <span class="visually-hidden">(current)</span></a></li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'logout-user' %}" aria-current="page">Logout
+                            <span class="visually-hidden">(current)</span></a></li>
+                    {% else %}
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'register' 'register' %}" aria-current="page"
+                                  >Register
+                                  <span class="visually-hidden">(current)</span></a></li>
+                          <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'login' 'login' %}" aria-current="page">Login
+                                <span class="visually-hidden">(current)</span></a>
+                        </li>
+                        {% endif %}
+            
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}">Gallery</a></li>
@@ -176,7 +218,7 @@
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
                         <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <a href="{% url 'cart' %}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
                         </li>
                     </ul>
@@ -344,7 +386,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>About Freshshop</h4>
+                            <h4>About SnapShop</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 							
                         </div>

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'cart.apps.CartConfig',
     'ckeditor',
+    'order.apps.OrderConfig',
+
     
 ]
 
