@@ -2,4 +2,34 @@
 
 {% block content %}
 <h2>payment page</h2>
+<button id="rzp-button1">Pay with Razorpay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_CsuGslmdozGNld", // Enter the Key ID generated from the Dashboard
+    "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Snap Shop",
+    "description": "Shop with in  snap",
+    "image": "my logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "{% url 'payment_success' %}",
+    "prefill": {
+        "name": "{{request.user}}",
+        "email": "{{request.user_email}}",
+        "contact": "{{request.phone_number}}"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
 {% endblock %}

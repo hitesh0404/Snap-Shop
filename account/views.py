@@ -91,7 +91,7 @@ class Login(View):
         # user = User.objects.get(username=username) 
         # user =get_user_model().objects.get(username=username)
         user=User.objects.get(username=username) 
-        user=1
+        # user=1
         if user:
             # print(request.__dict__)
             u = authenticate(request,username=username,password=password)
@@ -99,9 +99,17 @@ class Login(View):
                 if user_type == 'customer':
                     if hasattr(u,'customer'):
                         request.session['user_type']='customer'
+                        request.session['user_email']= user.email
+                        cust_obj = Customer.objects.get(user=user.id)
+                        request.session['contact']= cust_obj.phone_number
+                        
+
                 elif user_type=='supplier':
                     if hasattr(u,'supplier'):
                         request.session['user_type']='supplier'
+                        request.session['user_email']= user.email
+                        supp_obj = Supplier.objects.get(user=user.id)
+                        request.session['contact']= supp_obj.phone_number
                 login(request,u)
                 messages.success(request,'welcome back to the Home page')
                 return redirect('home')

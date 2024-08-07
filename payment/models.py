@@ -8,6 +8,7 @@ PAYMENT_STATUS_CHOICE = (
     ('completed','completed')
 )
 PAYMENT_METHOD_CHOICE = (
+    ('RazorPay','RazorPay'),
     ('card','card'),
     ('COD','COD'),
     ('UPI','UPI'),
@@ -15,6 +16,7 @@ PAYMENT_METHOD_CHOICE = (
 )
 class Payment(models.Model):
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    payment_signature = models.CharField(max_length=64,default='')
     payment_date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
     amount = models.DecimalField(decimal_places=2,max_digits=12)

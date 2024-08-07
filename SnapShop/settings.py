@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'account.apps.AccountConfig',
     'cart.apps.CartConfig',
+    'payment.apps.PaymentConfig',
     'ckeditor',
     'order.apps.OrderConfig',
 
@@ -150,3 +151,6 @@ messages.ERROR:'alert alert-danger',
 messages.INFO:'alert alert-info',
 messages.WARNING:'alert alert-warning'
 }
+
+RAZORPAY_KEY_ID='rzp_test_CsuGslmdozGNld'
+RAZORPAY_KEY_SECRET='wC5RAX8qpYzKyY1SFv7RZ9Rj'
