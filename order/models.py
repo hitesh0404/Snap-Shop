@@ -33,6 +33,7 @@ class Shipping(models.Model):
         return self.method +' ' + str(self.charges)
 class Order(models.Model):
     uuid = models.CharField(max_length=128,default='0',)
+    payment_id = models.CharField(max_length=100,default=0)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     address = models.ForeignKey(Address,on_delete=models.DO_NOTHING)
     order_date = models.DateField(auto_now_add=True)

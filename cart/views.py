@@ -104,12 +104,14 @@ def checkout(request):
                 order_item_obj = Orderitem(order=order_obj,product=item.product,quantity = item.quantity,price  =price)
                 order_item_obj.save()
             # cart_obj.delete()
-            
-            import razorpay
             client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+            order_obj.total = int(total*100)
 
             data = { "amount": (int(total*100)), "currency": "INR", "receipt": order_obj.uuid }
             payment = client.order.create(data=data)
+            order_obj.payment_id = payment.get('id')            
+            order_obj.save()
+            print(payment,order_obj,order_item_obj)
             context = {
                 'order':order_obj,
                 'total':total,
@@ -136,8 +138,9 @@ def success(request):
             client.utility.verify_payment_signature(params_dict)
             user_obj = User.objects.get(username=request.user)
             order_id = params_dict['razorpay_order_id']
-            order = Order.objects.get(uuid=order_id)
-            amount = order.amount
+            print(order_id)
+            order = Order.objects.get(payment_id=order_id)
+            amount = order.total
             payment_method = 'RazorPay'
             Payment.objects.create(
                 user=user_obj,
