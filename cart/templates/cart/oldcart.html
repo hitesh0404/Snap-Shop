@@ -1,0 +1,34 @@
+<h2>cart page</h2>
+
+{% if cart %}
+
+{% for item in cart %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ item.product.image.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ item.product.name }}</h5>
+        <p class="card-text">price: {{ item.product.price }}</p>
+        
+        <p class="card-text">quantity:
+            <a href="{% url 'increase-quantity' item.product.id %}" class="btn btn-success">&#9547;</a> 
+            {{ item.quantity }} 
+            <a  href="{% url 'decrease-quantity' item.product.id %}" class="btn btn-warning">&#9473;</a></p>
+            <p><a href="{% url 'remove-product-from-cart' item.product.id %}" class="btn btn-danger">Remove Item</a></p>
+
+
+        <p class="card-text">total: {{ item.quantity |total:item.product.price }}</p>
+        
+        </div>
+    </div>
+</div>
+{% endfor %}
+<p><a href="{% url 'clear-cart' %}" class="btn btn-danger">Clear Cart</a></p>
+<p><a href="{% url 'checkout' %}" class="btn btn-danger">Checkout</a></p>
+
+
+
+{% else %}
+
+<p>your cart is empty</p>
+
+{% endif %}

@@ -2,39 +2,6 @@
 {% load my_name %}
 {% load static %}
 {% block content %}
-<h2>cart page</h2>
-{% if cart %}
-
-{% for item in cart %}
-<div class="card" style="width: 18rem;">
-    <img src="{{ item.product.image.url }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{ item.product.name }}</h5>
-        <p class="card-text">price: {{ item.product.price }}</p>
-        
-        <p class="card-text">quantity:
-            <a href="{% url 'increase-quantity' item.product.id %}" class="btn btn-success">&#9547;</a> 
-            {{ item.quantity }} 
-            <a  href="{% url 'decrease-quantity' item.product.id %}" class="btn btn-warning">&#9473;</a></p>
-            <p><a href="{% url 'remove-product-from-cart' item.product.id %}" class="btn btn-danger">Remove Item</a></p>
-
-
-        <p class="card-text">total: {{ item.quantity |total:item.product.price }}</p>
-        
-        </div>
-    </div>
-</div>
-{% endfor %}
-<p><a href="{% url 'clear-cart' %}" class="btn btn-danger">Clear Cart</a></p>
-<p><a href="{% url 'checkout' %}" class="btn btn-danger">Checkout</a></p>
-
-
-
-{% else %}
-
-<p>your cart is empty</p>
-
-{% endif %}
 
 
     <!-- Start All Title Box -->
@@ -53,7 +20,7 @@
     </div>
     <!-- End All Title Box -->
     {% if cart %}
-   
+
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
@@ -72,8 +39,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <form id='update_cart' action="{% url 'update_cart' request.user.id %}">
                                     {% for item in cart %}
-                                        <form action="{% url 'increase-quantity' item.product.id %}" method="GET"></form>
+                                    <!-- <input type="text" style="display: none;" name="" value=""> -->
+                                        <!-- <form action="{% url 'increase-quantity' item.product.id %}" method="GET"></form> -->
                                             <tr>
                                                 <td class="thumbnail-img">
                                                     <a href="{% static '#' %}">
@@ -88,7 +57,7 @@
                                                 <td class="price-pr">
                                                     <p>{{ item.product.price }}</p>
                                                 </td>
-                                                <td class="quantity-box"><input type="number" size="4" value="{{ item.quantity }}" min="1" step="1" class="c-input-text qty text"></td>
+                                                <td class="quantity-box"><input name="{{item.product.id}}" type="number" size="4" value="{{ item.quantity }}" min="1" step="1" required class="c-input-text qty text"></td>
                                                 <td class="total-pr">
                                                     <p>total: {{ item.quantity |total:item.product.price }}</p>
                                                 </td>
@@ -98,19 +67,15 @@
                                             </a>
                                                 </td>
                                             </tr>
-                                        </form>
+                                        
                                     {% endfor %}
-                                {% else %}
-
-                                    <p>your cart is empty</p>
-
-                               
-                           </tbody>
-                        </table>
+                                
+                            </tbody>
+                        </table>   
                     </div>
                 </div>
-            </div>
-            {% endif %}
+            </div>     
+      
             <div class="row my-5">
                 <div class="col-lg-6 col-sm-6">
                     <div class="coupon-box">
@@ -124,7 +89,9 @@
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="update-box">
-                        <input value="Update Cart" type="submit">
+                        
+                        <input value="Update Cart" type="submit" form="update_cart">
+                    </form>
                     </div>
                 </div>
             </div>
@@ -167,8 +134,12 @@
 
         </div>
     </div>
+    {% else %}
+           <div class="all-title-box">                       
+            <h1> <p style="color:white; font-size: xx-large; font-weight: bolder;">your cart is empty</p></h1>
+            </div>  
     <!-- End Cart -->
-
+    {% endif %}
     <!-- Start Instagram Feed  -->
     <div class="instagram-box">
         <div class="main-instagram owl-carousel owl-theme">
@@ -254,7 +225,7 @@
             </div>
         </div>
     </div>
+    
     <!-- End Instagram Feed  -->
-
 
     {% endblock %}

@@ -20,7 +20,7 @@ def showProduct(request):
     # mail_send_new(request,products,u)
     return render(request,'product/show_product.html',context)
 
-
+@login_required
 def add_product(request):
     print(request.POST,request.GET)
     if request.method =="POST":
@@ -48,7 +48,7 @@ def product_details(request,id):
     }
     return render(request,'product/product_details.html',context)
 
-
+@login_required
 def delete_product(request,id):
     p = get_object_or_404(Product,pk=id)
     if p:
@@ -58,7 +58,7 @@ def delete_product(request,id):
             p.delete()
             return redirect('show-product')
     
-    
+@login_required 
 def update_product(request,id):
     p = get_object_or_404(Product,pk=id)
     if request.method =='GET':
@@ -72,7 +72,7 @@ def update_product(request,id):
         else:
             return render(request,'product/update_product.html',{'form':form})
 
-
+@login_required
 def add_to_cart(request,id):
     return redirect('home')
 

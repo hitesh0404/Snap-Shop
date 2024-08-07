@@ -11,12 +11,6 @@ from order.models import Order,Orderitem
 import uuid
 import razorpay
 
-def get_objects(request,id):
-    user_obj = User.objects.get(username=request.user)
-    cust_obj = Customer.objects.get(user=user_obj.id)
-    prod_obj = Product.objects.get(id=id)
-    return cust_obj,prod_obj
-
 
 
 def get_objects(request,id):
@@ -26,12 +20,20 @@ def get_objects(request,id):
     return cust_obj,prod_obj
 
 
+@login_required
+def update_quantity(cust_obj,product_id,quantity):
+    item = Cart.objects.get(user=cust_obj,product=product_id)
+    item.quantity=int(quantity)
+    item.save()
+    return None
 
 
-# @login_required
+
+
+
+@login_required
 def add_to_cart(request,id):
     cust_obj,prod_obj = get_objects(request,id)
-
     item , create =Cart.objects.get_or_create(user=cust_obj,product=prod_obj)
     if create:
         print('item created')
@@ -39,11 +41,20 @@ def add_to_cart(request,id):
         item.quantity+=1
         item.save()
     return cart(request,cust_obj)
-    
 
+@login_required
+def update_cart(request,id):
+    customer_object= Customer.objects.get(user_id=request.user.id)
+    for product_id,quantity in request.GET.items():
+        update_quantity(customer_object,product_id,quantity)
+    cart = Cart.objects.filter(user=customer_object)
+    context={
+        'cart':cart
+        }
+    return render(request,'cart/cart.html',context)
 
-def cart(request,customer_object='default'):
-    
+@login_required
+def cart(request,customer_object='default'):   
     if customer_object =='default':
         customer_object= Customer.objects.get(user_id=request.user.id)
     cart = Cart.objects.filter(user=customer_object)
@@ -52,7 +63,7 @@ def cart(request,customer_object='default'):
         }
     return render(request,'cart/cart.html',context)
 
-
+@login_required
 def increase_quantity(request,id,amount=1):
     cust_obj,prod_obj = get_objects(request,id)
     item = Cart.objects.get(user=cust_obj,product=prod_obj)
@@ -61,7 +72,7 @@ def increase_quantity(request,id,amount=1):
     return cart(request,cust_obj)
     
 
-
+@login_required
 def remove_product_from_cart(request,id):
     cust_obj,prod_obj = get_objects(request,id)
     item = Cart.objects.get(user=cust_obj,product=prod_obj)
@@ -69,7 +80,7 @@ def remove_product_from_cart(request,id):
     return cart(request,cust_obj)
     
 
-
+@login_required
 def decrease_quantity(request,id,amount=1):
     cust_obj,prod_obj = get_objects(request,id)
     item = Cart.objects.get(user=cust_obj,product=prod_obj)
@@ -80,12 +91,12 @@ def decrease_quantity(request,id,amount=1):
         item.delete()
     return cart(request,cust_obj)
 
-
+@login_required
 def clear_cart(request):
     cust_obj = Customer.objects.select_related('user').get(user=request.user.id)
     Cart.objects.filter(user=cust_obj).delete()
     return render(request,'cart/cart.html')
-
+@login_required
 def checkout(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -125,6 +136,7 @@ def checkout(request):
         return render(request,'cart/checkout.html',{'form':form})
  
 @csrf_exempt
+@login_required
 def success(request):
     if request.method == "POST":
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))

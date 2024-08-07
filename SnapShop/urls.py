@@ -25,6 +25,7 @@ urlpatterns = [
     path('',views.home,name='index'),
 
 
+
     path("about_us/", TemplateView.as_view(template_name="about.html"),name='about'),
     path('contact_us/',TemplateView.as_view(template_name='contact-us.html'),name ='contact'),
     path('gallery/',TemplateView.as_view(template_name='gallery.html'),name='gallery'),
