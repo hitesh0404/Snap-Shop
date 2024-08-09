@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'verify_otp' %}" method="post">
+    {% csrf_token %}
+    <input type="number" max="9999"  name = 'otp'>
+    <input type="submit">
+</form>
+
+{% endblock %}

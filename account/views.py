@@ -137,3 +137,50 @@ def choice_for_user(request,request_for):
         'request_for':request_for
     }
     return render(request,'account/choice.html',context)
+import random
+def reset_password(request):
+    if request.method == 'GET':
+        username = request.GET.get('username')
+        user  = get_object_or_404(User,username = username)
+        if user:
+            request.session['email']= user.email
+            request.session['username']= user.username
+            request.session['reset_password_attemp_count']=3
+            print(request.session)
+            return render(request,'account/take_email.html')
+    if request.method =='POST':
+        email = request.POST.get('email')
+        print(email)
+        if email == request.session.get('email'):
+            otp = random.randint(1000,9999)
+            print(otp)
+            request.session['otp']=otp
+            return render(request,'account/verify_otp.html')
+    return  redirect('home')
+
+def verify_otp(request):
+    if request.method == 'POST':
+        otp = request.POST.get('otp')
+        print(otp)
+        if request.session.get('reset_password_attemp_count')>0:
+            request.session['reset_password_attemp_count']==request.session.get('reset_password_attemp_count')-1
+            if int(otp) == request.session.get('otp'):
+
+                return render(request,'account/change_password.html')
+            else:
+                return render(request,'account/verify_otp.html')
+        else:
+            return redirect('home')
+    return redirect('home')
+    
+            
+def change_password(request):
+    if request.method == 'POST':
+        password = request.POST.get('new_password')
+        print(password)
+        username = request.session.get('username')
+        user  = get_object_or_404(User,username = username)
+        user.set_password(password)
+        user.save()
+        return  redirect('home')
+        

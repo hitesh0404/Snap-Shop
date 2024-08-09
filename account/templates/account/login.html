@@ -54,7 +54,7 @@
     <h1 class="h3 mb-3 fw-normal">Please sign in as {{user_type}}</h1>
 
     <div class="form-floating">
-      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Username</label>
     </div>
     <div class="form-floating">
@@ -70,6 +70,20 @@
     </div>
     <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+    <div id="reset-password-link" class="mt-5 mb-3 text-body-secondary"></div>
+
+    <script>
+      document.getElementById('floatingInput').addEventListener('input', function() {
+        const username = this.value;
+        const linkElement = document.getElementById('reset-password-link');
+        
+        // Assuming the base URL for reset_password is something like '/reset_password/'
+        const baseURL = '/account/reset_password/';
+        const url = `${baseURL}?username=${encodeURIComponent(username)}`;
+        
+        linkElement.innerHTML = `<a href="${url}">Forgot Password? Reset</a>`;
+      });
+    </script>
   </form>
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

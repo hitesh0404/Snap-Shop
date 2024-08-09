@@ -26,6 +26,7 @@ class Product(models.Model):#product_product
     image = models.ImageField(upload_to='product/',default="product/online-shopping-background-website-mobile-app_269039-166.jpg")
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE)
     category = models.ManyToManyField(Category,db_table='Product_Category_New')
+    quantity = models.IntegerField(default=1)
     class Meta:
         db_table = 'Products'
         ordering = ['name']

@@ -57,7 +57,7 @@
                                                 <td class="price-pr">
                                                     <p>{{ item.product.price }}</p>
                                                 </td>
-                                                <td class="quantity-box"><input name="{{item.product.id}}" type="number" size="4" value="{{ item.quantity }}" min="1" step="1" required class="c-input-text qty text"></td>
+                                                <td class="quantity-box"><input name="{{item.product.id}}" type="number" size="4" value="{{ item.quantity }}" min="1" step="1" max="{{item.product.quantity}}" required class="c-input-text qty text"></td>
                                                 <td class="total-pr">
                                                     <p>total: {{ item.quantity |total:item.product.price }}</p>
                                                 </td>
@@ -95,6 +95,7 @@
                     </div>
                 </div>
             </div>
+            <p><a href="{% url 'clear-cart' %}" class="btn btn-danger">Clear Cart</a></p>
 
             <div class="row my-5">
                 <div class="col-lg-8 col-sm-12"></div>
@@ -129,7 +130,9 @@
                         </div>
                         <hr> </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="{% static 'checkout.html' %}" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box"><a href="{% url 'checkout' %}" class="ml-auto btn hvr-hover">Checkout</a> 
+                    
+                </div>
             </div>
 
         </div>
