@@ -81,7 +81,7 @@ from django.shortcuts import get_object_or_404
 class Login(View):
     def get(self,request,user_type):
         if user_type not in ['supplier', 'customer']:
-            messages.error('Not a valid User Type')
+            messages.error(request,'Not a valid User Type')
             return redirect('login' 'login')  # Redirect to a default page if user_type is invalid
         return render(request,'account/login.html', {'user_type':user_type})
     def post(self,request,user_type):
@@ -102,8 +102,6 @@ class Login(View):
                         request.session['user_email']= user.email
                         cust_obj = Customer.objects.get(user=user.id)
                         request.session['contact']= cust_obj.phone_number
-                        
-
                 elif user_type=='supplier':
                     if hasattr(u,'supplier'):
                         request.session['user_type']='supplier'

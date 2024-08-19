@@ -116,25 +116,26 @@ def checkout(request):
                 order_item_obj.save()
             # cart_obj.delete()
             client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+
             order_obj.total = int(total*100)
 
             data = { "amount": (int(total*100)), "currency": "INR", "receipt": order_obj.uuid }
             payment = client.order.create(data=data)
-            order_obj.payment_id = payment.get('id')            
+            order_obj.payment_id = payment.get('id')       
+            print('here',payment.get('id'),'here')     
             order_obj.save()
             print(payment,order_obj,order_item_obj)
             context = {
                 'order':order_obj,
                 'total':total,
-                'payment':payment
+                'payment':payment   
             }
+            order_obj.__dict__
             return render(request,'cart/payment.html',context)
-        
     else:
-
         form = OrderForm()
         return render(request,'cart/checkout.html',{'form':form})
- 
+
 @csrf_exempt
 @login_required
 def success(request):

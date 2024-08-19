@@ -34,6 +34,7 @@ from ckeditor.fields import RichTextField
 from django.utils.html import strip_tags
 
 
+
 class Carousel(models.Model):
     image=models.ImageField(upload_to='carousel/',default=r'media\banner-01.jpg')
     title=RichTextField()
