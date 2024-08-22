@@ -13,10 +13,10 @@ import razorpay
 
 
 
-def get_objects(request,id):
+def get_objects(request,slug):
     user_obj = User.objects.get(username=request.user)
     cust_obj = Customer.objects.get(user=user_obj.id)
-    prod_obj = Product.objects.get(id=id)
+    prod_obj = Product.objects.get(slug=slug)
     return cust_obj,prod_obj
 
 
@@ -32,8 +32,8 @@ def update_quantity(cust_obj,product_id,quantity):
 
 
 @login_required
-def add_to_cart(request,id):
-    cust_obj,prod_obj = get_objects(request,id)
+def add_to_cart(request,slug):
+    cust_obj,prod_obj = get_objects(request,slug)
     item , create =Cart.objects.get_or_create(user=cust_obj,product=prod_obj)
     if create:
         print('item created')

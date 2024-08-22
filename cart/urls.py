@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 urlpatterns = [
-    path('add_to_cart/<int:id>',views.add_to_cart,name='add_to_cart'),
+    path('add_to_cart/<slug>',views.add_to_cart,name='add_to_cart'),
     path('increase_quantity/<int:id>/',views.increase_quantity,name='increase-quantity'),
     path('decrease_quantity/<int:id>/',views.decrease_quantity,name='decrease-quantity'),
     path('update_cart/<int:id>/',views.update_cart,name='update_cart'),

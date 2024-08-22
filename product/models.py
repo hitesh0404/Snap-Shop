@@ -1,4 +1,5 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Category(models.Model):
 
 class Product(models.Model):#product_product
     name = models.CharField(max_length=25)
+    slug = AutoSlugField(populate_from = 'name',blank=True,null=True,unique=True)
     price  = models.DecimalField(decimal_places=2,max_digits=10)
     desc = models.TextField()
     image = models.ImageField(upload_to='product/',default="product/online-shopping-background-website-mobile-app_269039-166.jpg")

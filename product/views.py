@@ -42,15 +42,15 @@ def add_product(request):
         return render(request,'product/add_product.html',context)
 
 
-def product_details(request,id):
+def product_details(request,slug):
     context = {
-        'p':get_object_or_404(Product,pk=id)
+        'p':get_object_or_404(Product,slug=slug)
     }
     return render(request,'product/product_details.html',context)
 
 @login_required
-def delete_product(request,id):
-    p = get_object_or_404(Product,pk=id)
+def delete_product(request,slug):
+    p = get_object_or_404(Product,slug=slug)
     if p:
         if request.method=="GET":
             return render(request,'confirm_delete.html',{'object':p})
@@ -59,8 +59,8 @@ def delete_product(request,id):
             return redirect('show-product')
     
 @login_required 
-def update_product(request,id):
-    p = get_object_or_404(Product,pk=id)
+def update_product(request,slug):
+    p = get_object_or_404(Product,slug=slug)
     if request.method =='GET':
         form = ProductForm(instance=p)
         return render(request,'product/update_product.html',{'form':form})
@@ -68,13 +68,13 @@ def update_product(request,id):
         form = ProductForm(request.POST,instance=p)
         if form.is_valid():
             form.save()
-            return product_details(request,id)
+            return product_details(request,slug)
         else:
             return render(request,'product/update_product.html',{'form':form})
 
-@login_required
-def add_to_cart(request,id):
-    return redirect('home')
+# @login_required
+# def add_to_cart(request,slug):
+#     return redirect('home')
 
 
 def filter_by_category(request,name):
