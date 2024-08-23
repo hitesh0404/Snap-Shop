@@ -6,15 +6,22 @@ from .forms import ProductForm
 from .models import Product,Category
 from account.views import mail_send_new
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 # @login_required
 def showProduct(request):
     products = Product.objects.all()
+    paginate_obj = Paginator(products,8)
+    page_number = request.GET.get('page')
+    if not page_number :
+        page_number =1
+    paginate = paginate_obj.page(page_number)
     categories = Category.objects.all()
     
     context={
-        'products': products,
-        'categories':categories
+        'products': paginate.object_list,
+        'categories':categories,
+        'paginate':paginate,
+        'range': range(2,paginate.paginator.num_pages)
     }
     # u=get_object_or_404(User,pk=10)
     # mail_send_new(request,products,u)
