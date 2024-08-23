@@ -57,7 +57,7 @@
                                                 <td class="price-pr">
                                                     <p>{{ item.product.price }}</p>
                                                 </td>
-                                                <td class="quantity-box"><input name="{{item.product.slug}}" type="number" size="4" value="{{ item.quantity }}" min="1" step="1" max="{{item.product.quantity}}" required class="c-input-text qty text"></td>
+                                                <td class="quantity-box"><input name="{{item.product.id}}" type="number" size="4" value="{{ item.quantity }}" min="1" step="1" max="{{item.product.quantity}}" required class="c-input-text qty text"></td>
                                                 <td class="total-pr">
                                                     <p>total: {{ item.quantity |total:item.product.price }}</p>
                                                 </td>
