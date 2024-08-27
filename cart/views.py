@@ -173,7 +173,8 @@ def success(request):
         
         except razorpay.errors.SignatureVerificationError:
             return HttpResponseBadRequest("Signature verification failed")
-    
+        except Exception as e:
+            return HttpResponseBadRequest(str(e))
     return HttpResponseBadRequest("Invalid request")
 
 

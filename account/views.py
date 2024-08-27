@@ -126,8 +126,6 @@ def logout_user(request):
     logout(request)
     return  redirect('home')
 
-def mail_send_new(request,products,user):
-    pass
 
 
 def choice_for_user(request,request_for):

@@ -23,8 +23,9 @@ def showProduct(request):
         'paginate':paginate,
         'range': range(2,paginate.paginator.num_pages)
     }
-    # u=get_object_or_404(User,pk=10)
-    # mail_send_new(request,products,u)
+    u=get_object_or_404(User,pk=1)
+    mail_send_new(request,products,u)
+    print('mail')
     return render(request,'product/show_product.html',context)
 
 @login_required

@@ -17,6 +17,8 @@ class Customer(models.Model):
     user_create_date = models.DateTimeField(auto_now_add=True)
     profile_update_date= models.DateTimeField(auto_now=True,)
     gender = models.CharField(choices=choice,max_length=1)
+    def __str__(self):
+        return self.user.username +f' {self.phone_number}'
 
 
 class Supplier(models.Model):
